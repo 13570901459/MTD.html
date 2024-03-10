@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método EPQ</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: linear-gradient(45deg, black,cyan);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        input {
+            margin: 10px;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Estilos para a página de sucesso */
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: dodgerblue;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .menu-item {
+            margin-bottom: 10px;
+        }
+
+        .menu-item a {
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Usuário">
+        <br>
+        <input type="password" id="password" placeholder="Senha">
+        <br>
+        <button onclick="validateLogin()">Entrar</button>
+        <p id="error-message"></p>
+    </div>
+
+    <script>
+        function validateLogin() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var errorMessage = document.getElementById("error-message");
+
+            // Simulação de login bem-sucedido
+            if (username === "123" && password === "123") {
+                alert("Login bem-sucedido!");
+                // Armazenar estado de login
+                sessionStorage.setItem("isLoggedIn", "true");
+                // Redirecionar para outra página após o login bem-sucedido
+                window.location.href = "menu.html";
+            } else {
+                errorMessage.textContent = "Credenciais inválidas. Por favor, tente novamente.";
+            }
+        }
+    </script>
+</body>
+</html> 
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página com Menu Lateral</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 100px;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+        }
+
+        .content {
+            margin-left: 300px; /* Largura da barra lateral */
+            padding: 20px;
+            flex: 1;
+        }
+
+        .header {
+            background-color: dodgerblue;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .menu-item {
+            margin-bottom: 10px;
+        }
+
+        .menu-item a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-item a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="header">
+                <h2>Menu</h2>
+            </div>
+            <div class="menu-item"><a href="#">Item 1</a></div>
+            <div class="menu-item"><a href="#">Item 2</a></div>
+            <div class="menu-item"><a href="#">Item 3</a></div>
+            <div class="menu-item"><a href="#">Item 4</a></div>
+            <div class="menu-item"><a href="#">Item 5</a></div>
+        </div>
+        <div class="content">
+            <div class="header">
+                <h1>Cabeçalho</h1>
+            </div>
+            <p>Conteúdo da página aqui...</p>
+        </div>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronômetro com Alarme e Som</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #clock {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        input[type="time"] {
+            font-size: 1em;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock">00:00:00</div>
+    <input type="time" id="alarmTime">
+    <button onclick="toggleTimer()">Iniciar/Pausar</button>
+
+    <audio id="alarmSound" src="alarme.mp3"></audio>
+
+    <script>
+        var timerInterval;
+        var running = false;
+        var seconds = 0;
+        var minutes = 0;
+        var hours = 0;
+        var alarmTime = null;
+
+        function updateClock() {
+            seconds++;
+
+            if (seconds >= 60) {
+                seconds = 0;
+                minutes++;
+            }
+
+            if (minutes >= 60) {
+                minutes = 0;
+                hours++;
+            }
+
+            var timeString = (hours < 10 ? '0' + hours : hours) + ':' +
+                             (minutes < 10 ? '0' + minutes : minutes) + ':' +
+                             (seconds < 10 ? '0' + seconds : seconds);
+            document.getElementById('clock').textContent = timeString;
+
+            // Verifica se o alarme deve ser acionado
+            if (alarmTime && hours === alarmTime.getHours() && minutes === alarmTime.getMinutes()) {
+                document.getElementById('alarmSound').play();
+                alert('Alarme!');
+                clearInterval(timerInterval);
+                running = false;
+                document.querySelector('button').textContent = 'Iniciar';
+            }
+        }
+
+        function toggleTimer() {
+            if (!running) {
+                timerInterval = setInterval(updateClock, 1000);
+                document.querySelector('button').textContent = 'Pausar';
+                running = true;
+
+                // Define o tempo do alarme
+                var alarmInput = document.getElementById('alarmTime').value;
+                if (alarmInput) {
+                    var alarmHours = parseInt(alarmInput.substring(0, 2));
+                    var alarmMinutes = parseInt(alarmInput.substring(3, 5));
+                    alarmTime = new Date();
+                    alarmTime.setHours(alarmHours);
+                    alarmTime.setMinutes(alarmMinutes);
+                    alarmTime.setSeconds(0);
+                } else {
+                    alarmTime = null;
+                }
+            } else {
+                clearInterval(timerInterval);
+                document.querySelector('button').textContent = 'Iniciar';
+                running = false;
+            }
+        }
+    </script>
+</body>
+</html>
